@@ -43,6 +43,7 @@
 7. Curl Commands:
 
     1. To rgister a client or an admin user, 
+       
        Terminal: run
        
        ```shell
@@ -50,40 +51,44 @@
        ```
 
     2. Log in to get login authentication token; 
-      Terminal: run
-       
-       ```shell
-      curl -d '{"username": "admin","email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/register
-      ```
+        
+        Terminal: run
+        
+        ```shell
+        curl -d '{"username": "admin","email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/register
+        ```
 
     3. Then verify the authentication token to prevent CSRF attack and before given access to the dashboard;
-      Terminal: run
-       
-       ```shell
-      curl -d '{"email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/login
-      ```
+        
+        Terminal: run
+        
+        ```shell
+        curl -d '{"email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/login
+        ```
 
     4. Get a list of all registered clients
       
-      Terminal: run
-       
-      ```shell
-      curl -d '{"userId": 1}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X GET http://localhost:3001/admins/getclients
-      ````
+        Terminal: run
+        
+        ```shell
+        curl -d '{"userId": 1}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X GET http://localhost:3001/admins/getclients
+        ````
 
     5. Update or modify a client data or details
       
-      Terminal: run
-       
-       ```shell
-      curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X PATCH http://localhost:3001/admins/update
-      ```
+        Terminal: run
+        
+        ```shell
+        curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X PATCH http://localhost:3001/admins/update
+        ```
 
     5. Delete or remove a client data or details
-      Terminal: run
        
-       ```shell
-      ***curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X DELETE http://localhost:3001/admins/delete
+        Terminal: run
+        
+        ```shell
+        curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X DELETE http://localhost:3001/admins/delete
+        ```
 
 
 ## Postman for Client-Server Requests and Responses
@@ -94,28 +99,28 @@
 
       Header:
 
-      ```h
-        { 
-          "Content-Type: application/json"
-        }
-      ```
+        ```h
+          { 
+            "Content-Type: application/json"
+          }
+        ```
 
       Body:
 
-      ```json 
-      {
-          "name": "string",  
-          "email": "string",
-          "password": "string",
-          "role":"string"  /// e.g., "user" or "admin"
-      }
-      ```
+        ```json 
+        {
+            "name": "string",  
+            "email": "string",
+            "password": "string",
+            "role":"string"  /// e.g., "user" or "admin"
+        }
+        ```
    
    2. POST http://localhost:3001/auth/login
 
    Header:
    
-          ```h
+        ```h
         {   
             "Content-Type: application/json"
         }
@@ -123,49 +128,51 @@
 
     Body:
 
-    ```json 
-    {
-        "email": "string",  //which is an email,
-        "password": "string" // which is a password
-    }
-    ```
+      ```json 
+        {
+            "email": "string",  //which is an email,
+            "password": "string" // which is a password
+        }
+      ```
 
    3. GET http://localhost:3001/admins/getclients
 
-```h
-  {
+      - Headers:
 
-    "Authorization: Bearer <TOKEN>",    
-    "Content-Type: application/json"
+          ```h
+            {
 
-  }
-  ```
+              "Authorization: Bearer <TOKEN>",    
+              "Content-Type: application/json"
 
-   - Request Body: None
+            }
+            ```
+
+      - Request Body: None
    
    4. PATCH http://localhost:3001/admins/updateclient
 
-   - Headers:
+      - Headers:
 
-    ```h
-    {
+        ```h
+        {
 
-      "Authorization: Bearer <TOKEN>",    
-      "Content-Type: application/json"
-    }
-    ```
+          "Authorization: Bearer <TOKEN>",    
+          "Content-Type: application/json"
+        }
+        ```
 
-  - Request Body: 
+      - Request Body: 
 
-    ```json
-    {
-        "userId": "integer", // number which is the user id
-        "name":"string", 
-        "email":"string",
-        "role":"string",
-        "businessType":"string"
-    }
-    ```
+        ```json
+        {
+            "userId": "integer", // number which is the user id
+            "name":"string", 
+            "email":"string",
+            "role":"string",
+            "businessType":"string"
+        }
+        ```
   
    5. DELETE http://localhost:3001/admins/deleteclient
 
@@ -178,7 +185,7 @@
       }
       ```
 
-- Request Body: 
+    - Request Body: 
 
       ```json
       {
