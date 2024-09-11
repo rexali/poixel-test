@@ -193,8 +193,10 @@ GET '/admins/getclients'
 
 - Request Headers:
  {
-  “Authorization: Bearer <TOKEN>”,    
-  “Content-Type: application/json”
+
+  Authorization: 'Bearer <TOKEN>',    
+  Content-Type: 'application/json'
+
 }
 
 - Request Body: None
@@ -228,21 +230,26 @@ PATCH '/admins/updateclient'
 }
 
 - Request Body: 
+```yaml
 {
-    userId’: an integer number which is the admin   profile’s userId
+    userId: an integer number which is the admin   profile’s userId
     name:string, 
     email:string
     role:string
     businessType:string 
 }
+```
 
 - Returns: An object with with a multiple key e.g.,
+
+```json
 {
 
-    status: a string, e.g,"success", 
-    message: a string, e.g, "client updated" 
-    data: a json object, e.g, "{affectedRows:1}"
+    "status": "success", 
+    "message": "client updated",
+    "data": {"affectedRows":1}
 }
+```
 
 
 DELETE '/admins/deleteclient'
