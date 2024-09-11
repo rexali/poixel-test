@@ -97,7 +97,7 @@
    
    1. POST http://localhost:3001/auth/register 
 
-      Header:
+      - Header:
 
         ```h
           { 
@@ -105,7 +105,7 @@
           }
         ```
 
-      Body:
+      - Body:
 
         ```json 
         {
@@ -118,7 +118,7 @@
    
    2. POST http://localhost:3001/auth/login
 
-   Header:
+      - Header:
    
         ```h
         {   
@@ -126,7 +126,7 @@
         }
         ```
 
-    Body:
+      - Body:
 
       ```json 
         {
@@ -176,22 +176,22 @@
   
    5. DELETE http://localhost:3001/admins/deleteclient
 
-    - Request Headers:
+      - Request Headers:
 
-      ```h
-      {
-        "Authorization: Bearer <TOKEN>",    
-        "Content-Type: application/json"
-      }
-      ```
+        ```h
+        {
+          "Authorization: Bearer <TOKEN>",    
+          "Content-Type: application/json"
+        }
+        ```
 
-    - Request Body: 
+      - Request Body: 
 
-      ```json
-      {
-          "userId": 1  // which is the client’s userId
-      }
-      ```
+        ```json
+        {
+            "userId": 1  // which is the client’s userId
+        }
+        ```
 
 
 # Test: Unit Test
