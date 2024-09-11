@@ -18,7 +18,7 @@
     
     * workbench:  https://dev.mysql.com/downloads/workbench
    
-   1. create a database and name it "poxeldb",
+   1. create a database and name it "poixeldb",
    
    2. create a table in the database and name it 'users' table with columns as follow: 
       * name, 
@@ -38,11 +38,11 @@
 
 6. Then open command line and run: npm start
 
-## CURL for Client-Server Requests and Respones
+## CURL for Client-Server Requests and Responses
 
 7. Curl Commands:
 
-    1. To rgister a user using the jwtoken you get in step 1 as a pass in request headers, 
+    1. To rgister a client or an admin user, 
        Run:  
        
        ***curl -d '{"username": "admin","email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/register***
@@ -175,11 +175,13 @@ POST '/auth/login'
     ‘password’: a string which is a password
  }
 
-- Returns: a single an object of success 
+- Returns: a single an object of success e.g.,
 {
+
     status: "success", 
     message: "Logged in successful", 
     data: json object containing the token
+
 }
 
 
@@ -218,8 +220,9 @@ PATCH '/admins/updateclient'
 
 - Request Arguments: None
 
-- Request Headers:
- {
+- Request Headers: e.g.,
+{
+
    “Authorization: Bearer <TOKEN>”,    
    “Content-Type: application/json”
 }
