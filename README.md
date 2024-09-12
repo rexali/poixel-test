@@ -84,6 +84,7 @@
        
        ```shell
          curl -d '{ "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"Farming", "password":"ab1234567&^$"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
+       ```
 
     2. Register another client as the second user and so on , 
        
@@ -133,7 +134,7 @@
          curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X POST localhost:3001/auth/verify
         ```
 
-    8. Get a list of all registered clients
+    8. Get a list of all registered clients. Before you run this command, copy and use the admin authentication token in the step 6 or step 7 and add it to this request header as shown below after "Bearer":
       
         Terminal: run
         
@@ -141,7 +142,7 @@
         curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X GET localhost:3001/admins/getclients
         ````
 
-    9. Update or modify a client data or details
+    9. Update or modify a client data or details. Before you run this command, copy and use the admin authentication token in the step 6 or step 7 and add it to this request header as shown below after "Bearer"
       
         Terminal: run
         
@@ -149,7 +150,7 @@
         curl -d '{ "userId":1, "role":"user", "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"School"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X PATCH localhost:3001/admins/updateclient
         ```
 
-    10. Delete or remove a client data or details
+    10. Delete or remove a client data or details. Before you run this command, copy and use the admin authentication token in the step 6 or step 7 and add it to this request header as shown below after "Bearer"
        
         Terminal: run
         
