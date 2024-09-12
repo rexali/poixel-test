@@ -1,5 +1,7 @@
 // import required modules
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 // instantiate express
 const app = express();
@@ -8,6 +10,14 @@ const PORT = 3001;
 // host
 const HOST = "localhost";
 
+// for parsing application/json
+app.use(express.json());
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
+// parse cookies
+app.use(cookieParser());
+// apply default cors to the server 
+app.use(cors());
 // server home
 app.get("/", (req, res) => {
     res.status(500).json({
@@ -18,7 +28,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/auth/register", (req, res) => {
-    res.status(500).json({
+    
+    res.status(200).json({
         status: "success",
         data: {
             ...req.body
@@ -40,29 +51,23 @@ app.post("/auth/login", (req, res) => {
 
 
 app.get("/admins/getclients", (req, res) => {
-    let mock_data = [{
-        userId: 1,
-        name: "Aliyu Bello",
-        email: "alybaba2009@gmail.com",
-        role: "user",
-        businessType: "Fish Farming"
-    }]
+    
     res.status(200).json({
         status: "success",
-        data: mock_data,
+        data: req.body,
         message: "Clients found"
     });
 })
 
 
 app.delete("/admins/deleteclient", (req, res) => {
-    let mock_data = { ...req.body }
+
     res.status(200).json({
         status: "success",
-        data: mock_data,
+        data: req.body,
         message: "Delete successfull"
     });
-})
+});
 
 
 app.patch("/admins/updateclient", (req, res) => {

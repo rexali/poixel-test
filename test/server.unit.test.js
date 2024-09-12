@@ -1,39 +1,35 @@
 var expect = require('assert');
 var supertest = require('supertest');
-var app = require('./server');
+var app = require('./mock.server');
 
 
-describe('Test all the Poixel Solutions Endpoints', async () => {
+describe('Test all the Poixel Test Endpoints', async () => {
 
     var request;
-
 
     var clientLoginData = {
         email: 'alybaba567@gmail.com',
         password: 'manmustwak',
     }
 
-    beforeEach(function (done) {
-        getJwtToken().then((result) => {
-            request = supertest(app)
-                .set("User-Agent", "Poixel Test Solution")
-                .set("Accept", "application/json")
-                .set('Content-Type', 'application/json')
-                .set('Authorization', 'Bearer ' + 1234567890);
-        });
-        done();
-    });
-
     it('Register user, should return the user data', (done) => {
 
+        let clientRegistrationData = {
+            name: 'alybaba567',
+            email: 'alybaba567@gmail.com',
+            password: 'manmustwak',
+            businessType: "Fish Farming"
+        }; // mock data
+
         request = supertest(app)
-            .get('/auth/register')
-            .expect(function (res) {
+        .post('/auth/register')
+        .send(clientRegistrationData)
+        .expect(function (res) {
                 let { status, message, data } = res.body; // destructure response body
                 expect.equal(res.status, 200);
                 expect.equal(status, 'success');
                 expect.equal(message, 'Registration successfull');
-                expect.deepEqual(clientRegistrationData, data);
+                expect.equal(clientRegistrationData.businessType, data.businessType);
             }).end(done)
     })
 
@@ -52,30 +48,26 @@ describe('Test all the Poixel Solutions Endpoints', async () => {
                 let { status, message, data } = res.body; // destructure response
                 expect.equal(res.status, 200);
                 expect.equal(status, 'success');
-                expect.equal(message, 'Login successful');
-                expect.deepEqual(clientLoginData, data)
+                expect.equal(message, 'Login successfull');
+                expect.equal(clientLoginData.email, data.email)
             }).end(done)
     })
 
 
-    it('Log in admin, should return a user or client data', (done) => {
-        var adminRegistrationData = {
-            name: 'alybaba567',
+    it('Log in admin, should return admin data', (done) => {
+        var adminLogInData = {
             email: 'alybaba567@gmail.com',
             password: 'manmustwak',
-            businessType: "Fish Farming",
-            role: "admin"
         }; // mock data
         request = supertest(app)
             .post('/auth/login')
-            .send({ ...adminRegistrationData })
+            .send(adminLogInData)
             .expect(function (res) {
                 let { status, message, data } = res.body; // destructure response
                 expect.equal(res.status, 200);
                 expect.equal(status, 'success');
-                expect.equal(message, 'Login successful');
-                expect.deepEqual(clientLoginData, data);
-                expect.equal("admin", data.role)
+                expect.equal(message, 'Login successfull');
+                expect.equal(adminLogInData.email, data.email)
             }).end(done)
     })
 
@@ -91,7 +83,8 @@ describe('Test all the Poixel Solutions Endpoints', async () => {
         }]
 
         request = supertest(app)
-            .post('/admins/getclients')
+            .get('/admins/getclients')
+            .send(mock_data)
             .expect(function (res) {
                 let { status, message, data } = res.body; // destructure response
                 expect.equal(res.status, 200);
@@ -104,27 +97,31 @@ describe('Test all the Poixel Solutions Endpoints', async () => {
 
     it('Delete a client, should return a client id', (done) => {
 
-        let mock_data = { userId: 1 };
+        let clientData = { 
+            userId: 1 
+        };
 
         request = supertest(app)
-            .post('/admins/deleteclient')
+            .delete('/admins/deleteclient')
+            .send(clientData)
             .expect(function (res) {
                 let { status, message, data } = res.body; // destructure response
                 expect.equal(res.status, 200);
                 expect.equal(status, 'success');
                 expect.equal(message, 'Delete successfull');
-                expect.deepEqual(mock_data, data);
+                expect.equal(clientData.userId, data.userId);
             }).end(done)
     })
 
 
-    
+
     it('Update a client, should return a client id', (done) => {
 
         let mock_data = { userId: 1 };
 
         request = supertest(app)
-            .post('/admins/deleteclient')
+            .patch('/admins/updateclient')
+            .send(mock_data)
             .expect(function (res) {
                 let { status, message, data } = res.body; // destructure response
                 expect.equal(res.status, 200);

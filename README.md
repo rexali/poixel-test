@@ -14,7 +14,7 @@
     cd poixel-test
    ```
 
-3. Download and install nodejs into you machine: https://nodejs.org/en 
+3. Download and install nodejs into your machine: https://nodejs.org/en 
    
    and then open your command line and run:
 
