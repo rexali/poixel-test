@@ -93,7 +93,7 @@
           curl -d '{ "name":"Rexali", "email":"baba@yahoo.com", "businessType":"Fishing", "password":"768?1ghtp"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
-    2. Log in a client (e.g., the first client) to get client authentication token with user role; 
+    3. Log in a client (e.g., the first client) to get client authentication token with user role; 
         
         Terminal: run
         
@@ -101,7 +101,7 @@
         curl -d '{"email":"talk2bb@yahoo.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
-    3. Then verify the client authentication token to prevent CSRF attack & before giving access to the user dashboard;
+    4. Then verify the client authentication token to prevent CSRF attack & before giving access to the user dashboard;
         
         Terminal: run
         
@@ -109,7 +109,7 @@
         curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM4LCJlbWFpbCI6InRhbGsyYmJAeWFob28uY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MjYxNzYxOTN9.i2wjNxnvNxu7YEC9wNZIbDhZbUAqZ5GAC6oMsR84CQQ" -X POST localhost:3001/auth/verify
         ```
 
-    4. To register an admin user before giving access to the admin to manage clients
+    5. To register an admin user before giving access to the admin to manage clients
 
        Terminal: run
        
@@ -117,7 +117,7 @@
         curl -d '{ "name":"Bello", "email":"talk2baba@gmail.com", "businessType":"Farming", "password":"1234567", "role":"admin"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
-    5. Log in an admin to get admin authentication token with admin role; 
+    6. Log in an admin to get admin authentication token with admin role; 
         
         Terminal: run
         
@@ -125,7 +125,7 @@
         curl -d '{ "email":"talk2baba@gmail.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
-    6. Then verify the admin authentication token to prevent CSRF attack & before giving access to the admin dashboard to manage clients;
+    7. Then verify the admin authentication token to prevent CSRF attack & before giving access to the admin dashboard to manage clients;
         
         Terminal: run
         
@@ -133,7 +133,7 @@
          curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X POST localhost:3001/auth/verify
         ```
 
-    4. Get a list of all registered clients
+    8. Get a list of all registered clients
       
         Terminal: run
         
@@ -141,7 +141,7 @@
         curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X GET localhost:3001/admins/getclients
         ````
 
-    5. Update or modify a client data or details
+    9. Update or modify a client data or details
       
         Terminal: run
         
@@ -149,7 +149,7 @@
         curl -d '{ "userId":1, "role":"user", "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"School"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X PATCH localhost:3001/admins/updateclient
         ```
 
-    5. Delete or remove a client data or details
+    10. Delete or remove a client data or details
        
         Terminal: run
         
