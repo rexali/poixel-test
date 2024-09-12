@@ -2,13 +2,25 @@
 
 ## Setup and Running Instruction
 
-1. Clone this repository: https://github.com/rexali/poixel-test.git 
+1. Clone this repository: https://github.com/rexali/poixel-test.git
 
-2. Run in your command terminal: 'cd poixel-test'
+   ```shell
+    git clone https://github.com/rexali/poixel-test.git
+   ``` 
+
+2. Run in your command terminal: run
+    
+   ```shell
+    cd poixel-test
+   ```
 
 3. Download and install nodejs into you machine: https://nodejs.org/en 
    
-   and then open your command line and run: npm install
+   and then open your command line and run:
+    
+   ```shell
+   npm install
+   ```
 
 4. Download and install MYSQL database installer or workbench:
    
@@ -129,7 +141,7 @@
         Terminal: run
         
         ```shell
-        curl -d '{ "userId":38, "role":"user", "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"School"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X PATCH localhost:3001/admins/updateclient
+        curl -d '{ "userId":1, "role":"user", "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"School"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X PATCH localhost:3001/admins/updateclient
         ```
 
     5. Delete or remove a client data or details
@@ -137,7 +149,7 @@
         Terminal: run
         
         ```shell
-         curl -d '{ "userId":39, "role":"user"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X DELETE localhost:3001/admins/deleteclient
+         curl -d '{ "userId":2, "role":"user"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X DELETE localhost:3001/admins/deleteclient
         ```
 
 
@@ -239,7 +251,8 @@
 
         ```json
         {
-            "userId": 1  // which is the client’s userId
+            "userId": 1,  // which is the client’s userId
+            "role":"user"
         }
         ```
 
@@ -248,7 +261,11 @@
 
   1. Note: Before you run the test make sure you stop the server
 
-  2. Then in your command terminal, run: npm test
+  2. Then in your command terminal, run:
+     
+     ```shell
+     npm test
+     ```
 
 
 # Endpoints Documentation:
