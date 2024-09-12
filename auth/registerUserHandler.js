@@ -50,7 +50,7 @@ const registerUserHandler = async (req, res) => {
         // hash the user password
         const hassPassword = hashpass(clientData.password);
         // escape email and password to prevent sql injection attack
-        const esc = [clientData.email, clientData.email, hassPassword, clientData.businessType, clientData.role]
+        const esc = [clientData.name, clientData.email, hassPassword, clientData.businessType, clientData.role]
         // prepare sql to enter data to user table
         const sql = `INSERT INTO users (name, email, password, businessType, role) VALUES (?,?,?,?,?)`;
 

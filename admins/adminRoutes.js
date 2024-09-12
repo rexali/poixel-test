@@ -10,7 +10,7 @@ const adminRouter = express.Router();
 
 // get all clients
 adminRouter.get(
-    '/getallclients',
+    '/getclients',
     isOnlyAdmin,         // middleware to make sure the user is an admin
     getAllRegisteredClients
 );
@@ -21,7 +21,7 @@ adminRouter.patch(
     updateClientDetails
 );
 // delete a client
-adminRouter.post(
+adminRouter.delete(
     "/deleteclient",
     isOnlyAdmin,        // middleware to make sure the user is an admin
     deleteClientDetails

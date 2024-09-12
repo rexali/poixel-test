@@ -61,7 +61,7 @@ const loginUserHandler = async (req, res) => {
             // verify the database password with password provided by user
             if (checkpass(dbPassword, clientData.password)) {
                 // prepare SQL to get authenticated user detail
-                const sql = `SELECT userId, email FROM users WHERE email = ?`;
+                const sql = `SELECT userId, email, role FROM users WHERE email = ?`;
                 // get logged-in token
                 const { token } = await getUserToken(sql, esc);
                 //  store in cookie

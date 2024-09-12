@@ -17,18 +17,17 @@ const updateClientDetails = async (req, res) => {
             userId
         } = req.body;
         // prepare an sql to update a client
-        const sql = `update users set  
+        const sql = `UPDATE users SET  
         name = ?, 
         email = ?, 
-        businessType = ?, 
-        role = ? where userId =?`;
+        businessType = ? WHERE userId =? AND role = ?`;
 
         const escapeClientData = [
             name,
             email,
             businessType,
-            role,
-            userId
+            userId,
+            role
         ];
         //  update client now
         const result = await transact(sql, escapeClientData);

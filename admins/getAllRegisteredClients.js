@@ -9,9 +9,9 @@ const { transact } = require("../model/transact");
 const getAllRegisteredClients = async (req, res) => {
     try {
         // prepare an sql to get all clients' details
-        const sql = `select userId, name, email, role, businessType from users`;
+        const sql = `SELECT userId, name, email, role, businessType FROM users WHERE role = ?`;
         // protect against sql injection attack
-        const esc = []; 
+        const esc = ['user']; 
         // get all clients' data
         const result = await transact(sql,esc);
         // send success data

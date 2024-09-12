@@ -19,6 +19,12 @@
     * workbench:  https://dev.mysql.com/downloads/workbench
    
    1. create a database and name it "poixeldb",
+      
+      Query Tab: run
+
+      ```sql
+      CREATE DATABASE poixeldb;
+      ```
    
    2. create a table in the database and name it 'users' table with columns as follow: 
       * name, 
@@ -26,6 +32,19 @@
       * password 
       * role (set the default value to "user")
       * businessType
+      
+      Query Tab: run
+
+      ```sql
+      CREATE TABLE users(
+      userId int primary key auto_increment,
+      name varchar(200),
+      email varchar(200),
+      password varchar(255),
+      role varchar(10),
+      businessType varchar(100)
+      );  
+      ````
 
 5. Add new .env file to the project root folder and then add the following configuration:
   
@@ -42,28 +61,59 @@
 
 7. Curl Commands:
 
-    1. To rgister a client or an admin user, 
+    1. To rgister a client as the first user, 
        
        Terminal: run
        
        ```shell
-       curl -d '{"username": "admin","email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/register
+         curl -d '{ "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"Farming", "password":"ab1234567&^$"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
+
+    2. Register another client as the second user and so on , 
+       
+       Terminal: run
+       
+       ```shell
+          curl -d '{ "name":"Rexali", "email":"baba@yahoo.com", "businessType":"Fishing", "password":"768?1ghtp"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
-    2. Log in to get login authentication token; 
+    2. Log in a client (e.g., the first client) to get client authentication token with user role; 
         
         Terminal: run
         
         ```shell
-        curl -d '{"username": "admin","email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/register
+        curl -d '{"email":"talk2bb@yahoo.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
-    3. Then verify the authentication token to prevent CSRF attack and before given access to the dashboard;
+    3. Then verify the client authentication token to prevent CSRF attack & before giving access to the user dashboard;
         
         Terminal: run
         
         ```shell
-        curl -d '{"email": "admin@bazzsolutions.com","password": "bazzsolution001"}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X POST http://localhost:3001/login
+        curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM4LCJlbWFpbCI6InRhbGsyYmJAeWFob28uY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MjYxNzYxOTN9.i2wjNxnvNxu7YEC9wNZIbDhZbUAqZ5GAC6oMsR84CQQ" -X POST localhost:3001/auth/verify
+        ```
+
+    4. To register an admin user before giving access to the admin to manage clients
+
+       Terminal: run
+       
+       ```shell
+        curl -d '{ "name":"Bello", "email":"talk2baba@gmail.com", "businessType":"Farming", "password":"1234567", "role":"admin"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
+       ```
+
+    5. Log in an admin to get admin authentication token with admin role; 
+        
+        Terminal: run
+        
+        ```shell
+        curl -d '{ "email":"talk2baba@gmail.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
+        ```
+
+    6. Then verify the admin authentication token to prevent CSRF attack & before giving access to the admin dashboard to manage clients;
+        
+        Terminal: run
+        
+        ```shell
+         curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X POST localhost:3001/auth/verify
         ```
 
     4. Get a list of all registered clients
@@ -71,7 +121,7 @@
         Terminal: run
         
         ```shell
-        curl -d '{"userId": 1}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X GET http://localhost:3001/admins/getclients
+        curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -X GET localhost:3001/admins/getclients
         ````
 
     5. Update or modify a client data or details
@@ -79,7 +129,7 @@
         Terminal: run
         
         ```shell
-        curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X PATCH http://localhost:3001/admins/update
+        curl -d '{ "userId":38, "role":"user", "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"School"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X PATCH localhost:3001/admins/updateclient
         ```
 
     5. Delete or remove a client data or details
@@ -87,7 +137,7 @@
         Terminal: run
         
         ```shell
-        curl -d '{"userId": 1, "email":"admin@bazzsolutions.com", "date_of_birth":"6/7/1960", "permanent_address":"28 Enyinare Quarters, Okene, Kogi State", "present_address":"463 N-Tsakiya, Kumbotso, Kano State", "city":"Kano", "postal_code":"70001", "country":"Nigeria", token:""}' -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWx5IiwiaWF0IjoxNzIwMjYxOTE4fQ.35XWUPp5aK1wxTpOLCVUqwojU7FqEr5LrkNq8ehXO-s" -X DELETE http://localhost:3001/admins/delete
+         curl -d '{ "userId":39, "role":"user"}' -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM5LCJlbWFpbCI6InRhbGsyYmFiYUBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3MjYxNzc3MjN9.Ld0wY-fnmwFrjliW42M0hpYA8wRlRwPBKCSD4nRxKvo" -H "Content-Type:application/json" -X DELETE localhost:3001/admins/deleteclient
         ```
 
 

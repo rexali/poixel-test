@@ -8,11 +8,11 @@ const { transact } = require("../model/transact");
 const deleteClientDetails = async (req, res) => {
     try {
         // get a client id
-        const id = req.body.id;
+        const id = req.body.userId;
         // prepare an sql to delete a client
-        const sql = `DELETE users WHERE userId=?`;
+        const sql = `DELETE FROM users WHERE userId=? and role=?`;
         // protect against sql injection attack
-        const esc = [id];
+        const esc = [id,'user'];
         // get all clients' data
         const result = await transact(sql, esc);
         // send success data
