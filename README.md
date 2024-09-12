@@ -87,7 +87,7 @@
        Terminal: run
        
        ```shell
-         curl -d '{ "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"Farming", "password":"ab1234567&^$"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
+       curl -d '{ "name":"Aliyu", "email":"talk2bb@yahoo.com", "businessType":"Farming", "password":"ab1234567&^$"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
     2. Register another client as the second user and so on , 
