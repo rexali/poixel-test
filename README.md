@@ -49,10 +49,10 @@
 5. Add new .env file to the project root folder and then add the following configuration:
   
     1. DB_HOST=localhost
-    2. DB_PORT= "your database port"
-    3. DB_USER= "your database username"
-    4. DB_PASS= "your database password"
-    5. DB_NAME= poixeldb
+    2. DB_PORT=your database port
+    3. DB_USER=your database username
+    4. DB_PASS=your database password
+    5. DB_NAME=poixeldb
     6. SECRET_KEY=asdfghjkil
 
 6. Then open command line and run: npm start
