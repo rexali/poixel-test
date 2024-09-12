@@ -71,8 +71,12 @@
 
    ![Dot Env File](https://github.com/rexali/poixel-test/blob/master/env.png "DOT ENV FILE EXAMPLE")
 
+    OR
 
-6. Then open command line and run: npm start
+   Visit this link to see an example: https://drive.google.com/file/d/1MksXCtGOC1T4YwBa-8PAh8j1x86oF9Hc/view
+
+
+7. Then open command line and run: npm start
 
 ## CURL for Client-Server Requests and Responses
 
