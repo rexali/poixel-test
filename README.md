@@ -51,7 +51,7 @@
       CREATE TABLE users(
       userId int primary key auto_increment,
       name varchar(200),
-      email varchar(200),
+      email unique varchar(200),
       password varchar(255),
       role varchar(10),
       businessType varchar(100)
@@ -114,7 +114,7 @@
         curl -H "Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjM4LCJlbWFpbCI6InRhbGsyYmJAeWFob28uY29tIiwicm9sZSI6InVzZXIiLCJleHAiOjE3MjYxNzYxOTN9.i2wjNxnvNxu7YEC9wNZIbDhZbUAqZ5GAC6oMsR84CQQ" -X POST localhost:3001/auth/verify
         ```
 
-    5. To register an admin user before giving access to the admin to manage clients
+    5. Create ONE admin: register an admin with admin role before giving access to the admin to manage clients
 
        Terminal: run
        
@@ -122,7 +122,7 @@
         curl -d '{ "name":"Bello", "email":"talk2baba@gmail.com", "businessType":"Farming", "password":"1234567", "role":"admin"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
-    6. Log in an admin to get admin authentication token with admin role; 
+    6. Secure login for ADMIN: Log in an admin to get admin authentication token with admin role; 
         
         Terminal: run
         
@@ -130,7 +130,7 @@
         curl -d '{ "email":"talk2baba@gmail.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
-    7. Then verify the admin authentication token to prevent CSRF attack & before giving access to the admin dashboard to manage clients;
+    7. Secure login for ADMIN: then verify the admin authentication token to prevent CSRF attack and others  before giving access to the admin dashboard to manage clients;
         
         Terminal: run
         
