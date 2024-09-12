@@ -68,7 +68,9 @@
     6. SECRET_KEY=asdfghjkil
   
    e.g.,
-   ![Dot Env File](https://github.com/rexali/poixel-test/blob/master/env.png, "DOT ENV FILE EXAMPLE")
+
+   ![Dot Env File](https://github.com/rexali/poixel-test/blob/master/env.png "DOT ENV FILE EXAMPLE")
+
 
 6. Then open command line and run: npm start
 
