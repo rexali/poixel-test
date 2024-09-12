@@ -40,7 +40,7 @@
    
    2. create a table in the database and name it 'users' table with columns as follow: 
       * name, 
-      * email (set the unique to true)
+      * email (add unique property)
       * password 
       * role (set the default value to "user")
       * businessType
@@ -51,9 +51,9 @@
       CREATE TABLE users(
       userId int primary key auto_increment,
       name varchar(200),
-      email unique varchar(200),
-      password varchar(255),
-      role varchar(10),
+      email unique varchar(200) not null,
+      password varchar(255) not null,
+      role varchar(10) default 'user',
       businessType varchar(100)
       );  
       ````
