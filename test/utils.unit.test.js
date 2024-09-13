@@ -4,23 +4,27 @@ const { hashpass } = require('../utils/hashHelper');
 
 describe("Perform Utils Test", ()=>{
 
-    it('Escape HTML string, should return a string', () => {
+    it('Should return a the same string given a string', () => {
         assert.equal(escapeHTML("Silicon Valley"),"Silicon Valley");
     });
 
-    it('Escaped string is not the same as the given in lowercase letter, should return a string', () => {
+    it('Should return the different a string with first words in capital letters', () => {
         assert.notEqual(escapeHTML("Silicon Valley"),"Silicon Valley".toLowerCase());
     });
     
-    it('Hash a given password, should return a hashed string ', () => {
+    it('Should return a string type, given a html string ', () => {
         assert.equal(typeof (escapeHTML("<Housing/>")), "string");
     });
 
-    it('Escaped string is not the same as a given string', () => {
+    it('Should return html string, given a html string', () => {
         assert.notEqual(escapeHTML("<Housing/>"), "<Housing/>");
     });
+
+    it('Escaped string is the same as a given string', () => {
+        assert.equal(escapeHTML(""), "");
+    });
     
-    it('Check that a hashed password is a string', () => {
+    it('Should return a string type given a string', () => {
         assert.equal(typeof (hashpass("Microsoft")), "string");
     });
 
