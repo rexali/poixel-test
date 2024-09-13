@@ -103,7 +103,7 @@
         Terminal: run
         
         ```shell
-        curl -d '{"email":"talk2bb@yahoo.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
+        curl -d '{"email":"talk2bb@yahoo.com", "password":"ab1234567&^$"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
     4. Then verify the client authentication token taken from step 3 above add to the rquest header as shown below to prevent CSRF attack & before giving access to the user dashboard;
@@ -119,7 +119,7 @@
        Terminal: run
        
        ```shell
-        curl -d '{ "name":"Bello", "email":"talk2baba@gmail.com", "password":"1234567", "role":"admin"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
+        curl -d '{ "name":"Bello", "email":"talk2baba@gmail.com", "password":"ABa234567!?", "role":"admin"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/register
        ```
 
     6. Secure login for ADMIN: Log in an admin to get admin authentication token with admin role; 
@@ -127,10 +127,10 @@
         Terminal: run
         
         ```shell
-        curl -d '{ "email":"talk2baba@gmail.com", "password":"1234567"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
+        curl -d '{ "email":"talk2baba@gmail.com", "password":"ABa234567!?"}' -H "Content-Type:application/json" -X POST localhost:3001/auth/login
         ```
 
-    7. Secure login for ADMIN: then verify the admin authentication token taken from the step 6 above and add to request header as shown below after "Bearer" to prevent CSRF attack and others before giving access to the admin dashboard to manage clients;
+    7. Secure login for ADMIN: then verify the admin authentication token taken from the step 6 above and then add it to the request header as shown below after "Bearer" to prevent CSRF attack and others before giving access to the admin dashboard to manage clients;
         
         Terminal: run
         
