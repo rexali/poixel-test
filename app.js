@@ -33,12 +33,14 @@ app.use(cors());
 app.set('view engine', 'ejs');
 // set views
 app.set('views', 'views');
+// static file
+app.use(express.static("public"));
 // get error 
 app.use(errorHandler);
 //log request info in the console
 app.use(logHandler);
 // protect all routes
-app.use(verifyAllRoutesToken);
+// app.use(verifyAllRoutesToken);
 // define auth and admin routes
 app.use("/auth", authRouter);
 app.use("/admins", adminRouter);
@@ -83,7 +85,6 @@ app.use((req, res, next)=>{
 });
 
 app.use((err, req, res, next) => {
-    console.log(err.name);
     if (err.name === 'UnauthorizedError') {
         // return json
         res.status(401).json({

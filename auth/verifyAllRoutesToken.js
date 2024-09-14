@@ -30,5 +30,6 @@ module.exports = verifyAllRoutesToken({
             "/",
             "/jwt",
             "/auth/login",
+            "/public/env.png"
         ]
     })
