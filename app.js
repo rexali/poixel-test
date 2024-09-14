@@ -29,10 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // apply default cors to the server 
 app.use(cors());
-// set view engine
-app.set('view engine', 'ejs');
-// set views
-app.set('views', 'views');
 // static file
 app.use(express.static("public"));
 // get error 
@@ -40,10 +36,15 @@ app.use(errorHandler);
 //log request info in the console
 app.use(logHandler);
 // protect all routes
-// app.use(verifyAllRoutesToken);
+app.use(verifyAllRoutesToken);
 // define auth and admin routes
 app.use("/auth", authRouter);
 app.use("/admins", adminRouter);
+// set view engine
+app.set('view engine', 'ejs');
+// set views
+app.set('views', 'views');
+
 // server home
 app.get("/", (req, res) => {
     try {
