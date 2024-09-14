@@ -2,7 +2,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 const dotenv = require('dotenv');
 // initiatize the .env
 dotenv.config();
@@ -12,6 +11,10 @@ const { errorHandler } = require("./utils/errorHandler");
 // import auth and admin routes
 const { authRouter } = require("./auth/authRoutes");
 const { adminRouter } = require("./admins/adminRoutes");
+const { getJWToken } = require("./auth/getJWToken");
+// import jwt verifying handlers
+const verifyOneRouteToken = require("./auth/verifyOneRouteToken");
+const verifyAllRoutesToken = require("./auth/verifyAllRoutesToken");
 // instantiate express
 const app = express();
 // port
@@ -34,6 +37,8 @@ app.set('views', 'views');
 app.use(errorHandler);
 //log request info in the console
 app.use(logHandler);
+// protect all routes
+app.use(verifyAllRoutesToken);
 // define auth and admin routes
 app.use("/auth", authRouter);
 app.use("/admins", adminRouter);
@@ -52,25 +57,43 @@ app.get("/", (req, res) => {
         });
     }
 });
+// protected a specific route
+app.get(
+    "/protected",
+    verifyOneRouteToken,
+    // callback handler
+    function (req, res) {
+        if (!req.auth.role) {
 
+            return res.sendStatus(401)
+        }
+        console.log(req.auth.role);
+        res.sendStatus(200);
+    }
+);
+app.get("/jwt", getJWToken);
 // catch not-found resources
-app.use((req, res) => {
-    try {
+app.use((req, res, next)=>{
+    // return json
+    res.status(404).json({
+        status: "fail",
+        data: null,
+        message: "404 Not Found"
+    });
+});
+
+app.use((err, req, res, next) => {
+    console.log(err.name);
+    if (err.name === 'UnauthorizedError') {
         // return json
-        res.status(404).json({
+        res.status(401).json({
             status: "fail",
             data: null,
-            message: "page not found"
+            message: "Error: " + err.message
         });
-        // catch error
-    } catch (error) {
-        // log error
-        console.warn(error);
-        res.status(500).json({
-            status: "fail",
-            data: null,
-            message: "Internal server error"
-        });
+
+    } else {
+        next(err);
     }
 });
 // listent to server  

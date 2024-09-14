@@ -18,9 +18,7 @@ async function verifyUserTokenHandler(req, res) {
        
        try {
               // verify that the token is signed during login to prevent CSRF attack
-              let decoded = jwt.verify(token, process.env.SECRET_KEY);
-              console.log(decoded?.userId, decoded?.email, decoded?.role);
-              
+              let decoded = jwt.verify(token, process.env.SECRET_KEY);              
               // check userId,email,role are defined in the token
               if (decoded?.userId && decoded?.email && decoded?.role) {
                      // return the verified user data

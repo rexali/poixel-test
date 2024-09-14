@@ -27,7 +27,7 @@ const registerUserHandler = async (req, res) => {
     // get user role
     let role = req.body.role ?? "user";
     // get businessType
-    let businessType= req.body.businessType ?? "";
+    let businessType = req.body.businessType ?? "";
 
     try {
         // initilise client data and escape each client details to protect XSS attack
