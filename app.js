@@ -12,7 +12,7 @@ const { errorHandler } = require("./utils/errorHandler");
 const { authRouter } = require("./auth/authRoutes");
 const { adminRouter } = require("./admins/adminRoutes");
 const { getJWToken } = require("./auth/getJWToken");
-// import jwt verifying handlers
+// import jwtoken verification middleware
 const verifyOneRouteToken = require("./auth/verifyOneRouteToken");
 const verifyAllRoutesToken = require("./auth/verifyAllRoutesToken");
 // instantiate express
@@ -66,7 +66,7 @@ app.get(
     verifyOneRouteToken,
     // callback handler
     function (req, res) {
-        if (!req.auth.role) {
+        if (!req.auth.role) { // auth property contains the payload
 
             return res.sendStatus(401)
         }
@@ -74,8 +74,9 @@ app.get(
         res.sendStatus(200);
     }
 );
+// to generate jwtoken
 app.get("/jwt", getJWToken);
-// catch not-found resources
+// to catch not-found resources
 app.use((req, res, next)=>{
     // return json
     res.status(404).json({
@@ -84,7 +85,7 @@ app.use((req, res, next)=>{
         message: "404 Not Found"
     });
 });
-
+// to catch UnauthorizedError and others
 app.use((err, req, res, next) => {
     if (err.name === 'UnauthorizedError') {
         // return json
